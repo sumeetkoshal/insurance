@@ -94,10 +94,36 @@
      ![Confirm VPN Creation](./VMR-Confirm-VPN-Creation.png)
    
 4. <a href="http://dev.mysql.com/downloads/mysql/" target="_blank">Download, install and run MySQL server</a>
-5. Download and deploy the DB script.
+5. <a href="./DB%20Script.zip" target="_blank">Download and deploy the DB script</a>
+   - Make sure you update the DB config under source/main/resources/META-INF/spring/routes_config.xml file as needed
+   ------------------------------------------------------------
+   ...
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+     <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+     <property name="url" value="jdbc:mysql://localhost:3306/insurance"/>
+     <property name="username" value="fuse_app"/>
+     <property name="password" value="solace1"/>
+   </bean>
+   ...
+   ------------------------------------------------------------
 6. <a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a>
 7. [Download the Fuse App]().
 8. Update configuration to point to VMR IP address
-9. Deploy Fuse App under Fuse deploy folder
+9. <a href="./FuseAPP.zip" target="_blank">Deploy Fuse App under Fuse deploy folder</a>
+   - Make sure you change the Solace VMR IP to point to your VMR IP under source/main/resources/META-INF/spring/routes_config.xml file.
+   ------------------------------------------------------------
+   ...
+        <property name="environment">
+            <map>
+                <entry key="java.naming.provider.url" value="smf://52.76.29.143" />
+                <entry key="java.naming.factory.initial" value="com.solacesystems.jndi.SolJNDIInitialContextFactory" />
+                <entry key="java.naming.security.credentials" value="password" />
+                <entry key="java.naming.security.principal" value="ins_user" />
+                <entry key="Solace_JMS_VPN" value="insurance" />
+            </map>
+        </property>
+   ...
+   ------------------------------------------------------------
+
 10. Start Fuse
 11. [Download web application](#).
