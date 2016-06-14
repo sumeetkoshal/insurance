@@ -68,11 +68,31 @@
 >You may change any details as needed (including images) and hit "Update Application button". The backend application validates, process and saves the updated Application Data in the DB and images data on the disk (image files names are saved in the DB). It then sends the response back to the UI.
 
 ## Download, Install & Run this demo on my machine
-1. <a href="http://dev.solacesystems.com/downloads/" target="_blank">Download VMR (Virtual Message Router) & its Release Notes</a>
-2. Install and run VMR as per the instructions in the release notes.
+1. <a href="http://dev.solacesystems.com/downloads/" target="_blank">Download VMR (Virtual Message Router), SolAdmin & its Release Notes</a>
+2. Install/run VMR and SolAdmin as per the instructions in the release notes.
 3. Create VPN (Partition) in Solace VMR
    <a href="./SolaceConfig.zip" target="_blank">Download CLI Script for VPN creation</a>
-   import this script in VMR as described below.
+   - import this script in VMR as described below.
+   - Run SolAdmin
+   - Add newly deployed running VMR in Solace as managed apliance
+     ![Add VMR](./SolAdmin-AddVMR.png)
+   - Launch CLI
+     ![Add VMR](./VMR-Launch-CLI.png)
+   - Login in CLI
+     ![Login CLI](./VMR-CLI-Login.png)
+   - Create File Transfer User
+     ![Create File Transfer User](./VMR-Create-FileTransfer-User.png)
+   - Launch File transfer
+     ![Launch File Transfer](./VMR-Launch-FileTransfer.png)
+   - File Transfer Login
+     ![File Transfer Login](./VMR-FileTransfer-Login.png)
+   - Upload CLI Script in VMR
+     ![Upload CLI Script](./VMR-Upload-CLI-Script.png)
+   - Execute CLI Script
+     ![Execute CLI Script](./VMR-Execute-CLI-Script.png)
+   - Confirm the VPN has been created successfully
+     ![Confirm VPN Creation](./VMR-Confirm-VPN-Creation.png)
+   
 4. <a href="http://dev.mysql.com/downloads/mysql/" target="_blank">Download, install and run MySQL server</a>
 5. Download and deploy the DB script.
 6. <a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a>
