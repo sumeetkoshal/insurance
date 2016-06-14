@@ -70,11 +70,14 @@
 ## Download, Install & Run this demo on my machine
 1. <a href="http://dev.solacesystems.com/downloads/" target="_blank">Download VMR (Virtual Message Router) & its Release Notes</a>
 2. Install and run VMR as per the instructions in the release notes.
-3. <a href="http://dev.mysql.com/downloads/mysql/" target="_blank">Download, install and run MySQL server</a>
-4. Download and deploy the DB script.
-5. <a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a>
-6. [Download the Fuse App](#).
-7. Update configuration to point to VMR IP address
-8. Deploy Fuse App under Fuse deploy folder
-9. Start Fuse
-10. [Download web application](#).
+3. Create VPN (Partition) in Solace VMR
+   <a href="./SolaceConfig.zip" target="_blank">Download CLI Script for VPN creation</a>
+   import this script in VMR as described below.
+4. <a href="http://dev.mysql.com/downloads/mysql/" target="_blank">Download, install and run MySQL server</a>
+5. Download and deploy the DB script.
+6. <a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a>
+7. [Download the Fuse App]().
+8. Update configuration to point to VMR IP address
+9. Deploy Fuse App under Fuse deploy folder
+10. Start Fuse
+11. [Download web application](#).
