@@ -95,7 +95,7 @@
    
 4. <a href="http://dev.mysql.com/downloads/mysql/" target="_blank">Download, install and run MySQL server</a>
 5. <a href="./DB%20Script.zip" target="_blank">Download and deploy the DB script</a>
-   - Make sure you update the DB config under source/main/resources/META-INF/spring/routes_config.xml file as needed
+   > Make sure you update the DB config under source/main/resources/META-INF/spring/routes_config.xml file as needed
    ------------------------------------------------------------
    ...
    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -110,7 +110,7 @@
 7. [Download the Fuse App]().
 8. Update configuration to point to VMR IP address
 9. <a href="./FuseAPP.zip" target="_blank">Deploy Fuse App under Fuse deploy folder</a>
-   - Make sure you change the Solace VMR IP to point to your VMR IP under source/main/resources/META-INF/spring/routes_config.xml file.
+   > Make sure you change the Solace VMR IP to point to your VMR IP under source/main/resources/META-INF/spring/routes_config.xml file.
    ------------------------------------------------------------
    ...
         <property name="environment">
