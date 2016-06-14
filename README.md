@@ -104,7 +104,7 @@
          <property name="password" value="solace1"/>
       </bean>
 6. <a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a>
-7. [Download the Fuse App]().
+7. [Download the Fuse App](./FuseAPP.zip).
 8. Update configuration to point to VMR IP address
 9. <a href="./FuseAPP.zip" target="_blank">Deploy Fuse App under Fuse deploy folder</a>
    > Make sure you change the Solace VMR IP to point to your VMR IP under            
