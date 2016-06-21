@@ -9,7 +9,7 @@
 > This demo typically shows how insurance agents can use iPad/Mobile applications on the fields for Customer Account Opening, Claims Filing and crosssell & upsell. Solace also underpins the ESB (Camel based) and feeds the Hadoop big data storage (not a part of the demo).The purpose of this demo is also to highlight challenges/limitations of typical/legacy REST based applications and to demonstrate Solace capability to allow browser/phone based applications to connect directly to Solace messaging routers and do streaming REST based request/reply messaging.
 
 
-> ![About](./about.jpg)
+> ![About](./images/about.jpg)
 
 
 
@@ -22,12 +22,12 @@
 - High Throughput
 
 ### Challenges/Limitations with Typical REST
->![Typical REST](./typical_rest.png)
+>![Typical REST](./images/typical_rest.png)
 
->![Limitations of REST](./limitations_rest.png)
+>![Limitations of REST](./images/limitations_rest.png)
 
 ### Solace + REST Assured/Benefits
->![Solace + REST](./solace+rest.png)
+>![Solace + REST](./images/solace+rest.png)
 
 ### Technologies/Infrastructure Used
 >- Solace VMR running on AWS
@@ -43,19 +43,19 @@
 
 ## Demo Walkthrough
 >- Open index.html in browser of your choice & Login.  
-![Limitations of REST](./login.png)
+![Limitations of REST](./images/login.png)
 
 >The default username is "sumeet" and password is "sumeet". Clicking on "Log Me In To My Account" will take you to "New Applications" page. In the background when you click on Login button, it send a message to Solace appliance which is processed and authenticated by the LoginHandler service.
 
 - New application  
 >The below screen takes you to the default landing page that you see after you are successfully authenticated by LoginService handler.
->![New Application](./new_app_screen.png)
+>![New Application](./images/new_app_screen.png)
 
 >After you fill in the necessary details and choose required images to upload, click on the "Save Application" button. In the background this action will send several messages such as Application Data and Images data. These messages are received the application running within Fuse. The application validates, process and saves Application Data in the DB and images data on the disk (image files names are saved in the DB). It then sends the response back to the UI.
 
 - Search existing applications  
 >The below screen shows the search applications page.
->![Search Existing Applications](./search_apps.png)
+>![Search Existing Applications](./images/search_apps.png)
 
 >You have an option to search applications based on the first name of the applicants. You can leave this space blank and hit the search button to search all existing applications.
 
@@ -63,7 +63,7 @@
 
 - Update application  
 >The below screen shows the edit/update application page.
-> ![Limitations of REST](./update_app_screen.png)
+> ![Limitations of REST](./images/update_app_screen.png)
 
 >You may change any details as needed (including images) and hit "Update Application button". The backend application validates, process and saves the updated Application Data in the DB and images data on the disk (image files names are saved in the DB). It then sends the response back to the UI.
 
@@ -75,23 +75,23 @@
    - import this script in VMR as described below.
    - Run SolAdmin
    - Add newly deployed running VMR in Solace as managed apliance
-     ![Add VMR](./SolAdmin-AddVMR.png)
+     ![Add VMR](./images/SolAdmin-AddVMR.png)
    - Launch CLI
-     ![Add VMR](./VMR-Launch-CLI.png)
+     ![Add VMR](./images/VMR-Launch-CLI.png)
    - Login in CLI
-     ![Login CLI](./VMR-CLI-Login.png)
+     ![Login CLI](./images/VMR-CLI-Login.png)
    - Create File Transfer User
-     ![Create File Transfer User](./VMR-Create-FileTransfer-User.png)
+     ![Create File Transfer User](./images/VMR-Create-FileTransfer-User.png)
    - Launch File transfer
-     ![Launch File Transfer](./VMR-Launch-FileTransfer.png)
+     ![Launch File Transfer](./images/VMR-Launch-FileTransfer.png)
    - File Transfer Login
-     ![File Transfer Login](./VMR-FileTransfer-Login.png)
+     ![File Transfer Login](./images/VMR-FileTransfer-Login.png)
    - Upload CLI Script in VMR
-     ![Upload CLI Script](./VMR-Upload-CLI-Script.png)
+     ![Upload CLI Script](./images/VMR-Upload-CLI-Script.png)
    - Execute CLI Script
-     ![Execute CLI Script](./VMR-Execute-CLI-Script.png)
+     ![Execute CLI Script](./images/VMR-Execute-CLI-Script.png)
    - Confirm the VPN has been created successfully
-     ![Confirm VPN Creation](./VMR-Confirm-VPN-Creation.png)
+     ![Confirm VPN Creation](./images/VMR-Confirm-VPN-Creation.png)
    
 4. <a href="http://dev.mysql.com/downloads/mysql/" target="_blank">Download, install and run MySQL server</a>
 5. <a href="./DB%20Script.zip" target="_blank">Download and deploy the DB script</a>
@@ -104,7 +104,7 @@
          <property name="password" value="solace1"/>
       </bean>
 6. <a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a>
-7. [Download the Fuse App](./FuseAPP.zip).
+7. [Download the Fuse App](./images/FuseAPP.zip).
 8. Update configuration to point to VMR IP address
 9. <a href="./FuseAPP.zip" target="_blank">Deploy Fuse App under Fuse deploy folder</a>
    > Make sure you change the Solace VMR IP to point to your VMR IP under            
