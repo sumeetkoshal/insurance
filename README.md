@@ -104,9 +104,7 @@
          <property name="password" value="solace1"/>
       </bean>
 6. <a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a>
-7. [Download the Fuse App](./images/FuseAPP.zip).
-8. Update configuration to point to VMR IP address
-9. <a href="./FuseAPP.zip" target="_blank">Deploy Fuse App under Fuse deploy folder</a>
+7. <a href="./FuseAPP/redleaf-insaurance-services-0.0.1-SNAPSHOT.jar" target="_blank">Deploy Fuse App under Fuse deploy folder</a>
    > Make sure you change the Solace VMR IP to point to your VMR IP under            
      source/main/resources/META-INF/spring/routes_config.xml file.
    [//]: # (<property name="environment">)
@@ -119,5 +117,7 @@
          </map>
       </property>
 
-10. Start Fuse
-11. [Download web application](#).
+8. Start Fuse
+9. [Download web application](./www).
+> Make the changes as suugested in the images below in rest.js file under insurance/res/sol/
+     ![Make the necessary changes](./images/UpdateREST-js.png)
