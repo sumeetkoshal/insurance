@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Red Leaf Insurance Mobile Agent Demo</title>
+
+	<link rel="stylesheet" href="themes/pru.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="./res/jqm/jquery.mobile.structure-1.4.2.min.css" />
+	<!--link rel="stylesheet" href="./res/jqm/jquery.mobile-1.4.2.min.css"-->
+	<link rel="shortcut icon" href="../favicon.ico">
+
+	<script src="./res/jq/jquery-1.11.1.min.js"></script>
+	<script src="./res/jq/jquery.validate.js"></script>
+
+	<script src="./res/jqm/jquery.mobile-1.4.2.min.js"></script>
+
+	<script src="./res/sol/solclient.js"></script>
+	<script src="./res/sol/solUIHelper.js"></script>
+	<script src="./res/sol/rest.js"></script>
+	<script src="./res/sol/images.js"></script>
+	<script src="./res/sol/sha256.js"></script>
+	<script src="./res/jq/jquery-blink.js" language="javscript" type="text/javascript"></script>
+	<link rel="stylesheet" href="./res/css/colorbox.css" />
+	<script src="./res/jq/jquery.colorbox.js"></script>
+
+	<script type="text/javascript" language="javascript">
+
+	$(document).ready(function()
+	{
+	        $('.blink').blink({delay:2000}); // default is 500ms blink interval.
+	});
+
+	</script>
+<script>
+		$().ready(function() {
+			// validate signup form on keyup and submit
+			$("#newAppForm").validate({
+				rules: {
+					txtFamilyName: {
+						required: true,
+						maxlength: 16
+					},
+					txtGivenName: {
+						required: true,
+						maxlength: 24
+					},
+					txtYOB: {
+						required: true,
+						minlength: 4,
+						maxlength: 4,
+						number:true
+					},
+				},
+				messages: {
+					txtYOB: "Please enter correct YOB",
+					txtFamilyName: "Please enter Family Name",
+					txtGivenName: "Please enter Given Name"
+				}
+			});
+			$("#UpdAppForm").validate({
+				rules: {
+					txtUpdFamilyName: {
+						required: true,
+						maxlength: 16
+					},
+					txtUpdGivenName: {
+						required: true,
+						maxlength: 24
+					},
+					txtUpdYOB: {
+						required: true,
+						minlength: 4,
+						maxlength: 4,
+						number:true
+					},
+				},
+				messages: {
+					txtUpdYOB: "Please enter correct YOB",
+					txtUpdFamilyName: "Please enter Family Name",
+					txtUpdGivenName: "Please enter Given Name"
+				}
+			});
+
+		});
+	</script>
+	<style>
+	#header{
+	    min-width: 1200px;
+	}
+	#flow{
+	    float:left;
+	}
+	#flow1{
+	    float:left;
+
+	}
+	</style>
+</head>
+
+<body>
+
+<!-- Start of Login page: #one -->
+
+<div data-role="page" id="login">
+	<div data-role="header">
+		<img src="./img/redleaf.png" style="background:#fff; color:#ffffff">
+		<span style="text-align:center;">Red Leaf Insurance Mobile Agent Login</span>
+	</div>
+
+	<div data-role="main" class="ui-content ui-body-f" >
+		<div class="ui-field-contain">
+			<label for="loginid">Login ID:</label>
+			<input type="text" name="loginid" id="loginid" placeholder="key in your Login ID here...">
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" placeholder="key in your password here..">
+		</div>
+		<div align="center">
+			<img id="processing_login"/>
+		</div>
+		<a href="#" class="ui-btn" onclick="sendLoginRequest();">Log Me In To My Account</a>
+	</div>
+	<div id=loginStatusLine style="font-size:14px; font-weight:bold; color:#ff6600;">Enter your login and password to access your account...</div>
+		<!--********* Solace Code in this block ************-->
+		<div style="background: #FFFFFF; ">
+			<textarea id="txaConsoleLog" style="font: 11px sans-serif; background:#dbecfa; height:60px;"  rows="30" readonly="readonly"></textarea>
+		</div>
+		<!--********* Solace Code in this block end ************-->
+	</div>
+</div>
+
+
+<!-- Start of first page: #one -->
+<div data-role="page" id="newapp" data-theme="a">
+
+	<div data-role="header">
+		<img src="./img/redleaf.png" style="background:#fff; color:#ffffff">
+
+		<span style="text-align:center;">Red Leaf Insurance Mobile Agent Demo</span>
+	</div><!-- /header -->
+
+	<div role="content" class="ui-content" data-theme="a">
+		<h2><span style="align:center;color:red;" class="blink" id="authenticated_success"></span></h2>
+		<h2>New Application</h2>
+
+		<p>Please fill in the details below.</p>
+
+	<form class="cmxform" id="newAppForm" method="get" action="">
+			<div class="ui-field-contain">
+				<label for="txtFamilyName">Family Name:</label>
+				<input type="text" maxlength="16" name="txtFamilyName" id="txtFamilyName" placeholder="Family Name" value="" data-mini="true">
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="txtGivenName">Given Names:</label>
+				<input type="text" maxlength="24" name="txtGivenName" id="txtGivenName" data-theme="a" placeholder="Given Name" value="" data-mini="true">
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="selTitle" class="select">Title</label>
+				<select name="selTitle" id="selTitle" data-mini="true" data-inline="true" data-theme="a">
+					<option value="NONE">--SELECT_FROM_LIST--</option>
+					<option value="Head of State">Head of State</option>
+					<option value="Executive">Executive</option>
+					<option value="House husband">House husband</option>
+					<option value="Home executive">Home executive</option>
+					<option value="Office worker">Office worker</option>
+					<option value="Entrepreneur">Entrepreneur</option>
+					<option value="Explosives Technician">Explosives Technician</option>
+				</select>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="txtYOB">Year Of Birth:</label>
+				<input type="text" maxlength="4" minlength="4" name="txtYOB" id="txtYOB" data-theme="a" placeholder="YOB" value="" data-mini="true">
+			</div>
+
+			<div class="ui-field-contain">
+
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Gender:</legend>
+						<input type="radio" name="rdGender" id="rdFemale" value="F">
+						<label for="rdFemale">Female</label>
+						<input type="radio" name="rdGender" id="rdMale" value="M">
+						<label for="rdMale">Male</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="selIndustry" class="select">Industry</label>
+				<select name="selIndustry" id="selIndustry" data-mini="true" data-inline="true">
+					<option value="NONE">--SELECT_FROM_LIST--</option>
+					<option value="Agriculture">Agriculture</option>
+					<option value="Accounting">Accounting</option>
+					<option value="Advertising">Advertising</option>
+					<option value="Automotive">Automotive</option>
+					<option value="Banking">Banking</option>
+					<option value="Call Centres">Call Centres</option>
+					<option value="Chemical">Chemical</option>
+					<option value="Consulting">Consulting</option>
+					<option value="Defence">Defence</option>
+					<option value="Education">Education</option>
+					<option value="Energy">Energy</option>
+					<option value="Entertainment & Leisure">Entertainment & Leisure</option>
+					<option value="Financial Services">Financial Services</option>
+					<option value="Government">Government</option>
+					<option value="Health Care">Health Care</option>
+					<option value="Legal">Legal</option>
+					<option value="Manufacturing">Manufacturing</option>
+					<option value="Pharmaceuticals">Pharmaceuticals</option>
+					<option value="Real Estate">Real Estate</option>
+					<option value="Retail & Wholesale">Retail & Wholesale</option>
+					<option value="Service">Service</option>
+					<option value="Sports">Sports</option>
+					<option value="Technology">Technology</option>
+					<option value="Telecommunications">Telecommunications</option>
+					<option value="Transportation">Transportation</option>
+
+				</select>
+			</div>
+
+
+			<div class="ui-field-contain">
+				<label for="selSalary" class="select">Annual Salary Range USD</label>
+				<select name="selSalary" id="selSalary" data-mini="true" data-inline="true">
+					<option value="NONE">--SELECT_FROM_LIST--</option>
+					<option value=">20K">>20K</option>
+					<option value="20-40K">20-40K</option>
+					<option value="40-80K">40-80K</option>
+					<option value="80-120K">80-120K</option>
+					<option value="120-220K">120-220K</option>
+					<option value=">220K">>220K</option>
+				</select>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Smoker:</legend>
+						<input type="radio" name="rdSmoker" id="rdSmokerYes" value="Y">
+						<label for="rdSmokerYes">Yes</label>
+						<input type="radio" name="rdSmoker" id="rdSmokerNo" value="N">
+						<label for="rdSmokerNo">No</label>
+				</fieldset>
+
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Drinker:</legend>
+						<input type="radio" name="rdDrinker" id="rdDrinkerYes" value="Y">
+						<label for="rdDrinkerYes">Yes</label>
+						<input type="radio" name="rdDrinker" id="rdDrinkerNo" value="N">
+						<label for="rdDrinkerNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Race Car Driver:</legend>
+						<input type="radio" name="rdRCDriver" id="rdRCDriverYes" value="Y">
+						<label for="rdRCDriverYes">Yes</label>
+						<input type="radio" name="rdRCDriver" id="rdRCDriverNo" value="N">
+						<label for="rdRCDriverNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Volvo Driver:</legend>
+						<input type="radio" name="rdVolvoDriver" id="rdVolvoDriverYes" value="Y">
+						<label for="rdVolvoDriverYes">Yes</label>
+						<input type="radio" name="rdVolvoDriver" id="rdVolvoDriverNo" value="N">
+						<label for="rdVolvoDriverNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Chess Club Member:</legend>
+						<input type="radio" name="rdChessClubMember" id="rdChessClubMemberYes" value="Y">
+						<label for="rdChessClubMemberYes">Yes</label>
+						<input type="radio" name="rdChessClubMember" id="rdChessClubMemberNo" value="N">
+						<label for="rdChessClubMemberNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Been Arrested?:</legend>
+						<input type="radio" name="rdBeenArrested" id="rdBeenArrestedYes" value="Y">
+						<label for="rdBeenArrestedYes">Yes</label>
+						<input type="radio" name="rdBeenArrested" id="rdBeenArrestedNo" value="N">
+						<label for="rdBeenArrestedNo">No</label>
+				</fieldset>
+			</div>
+
+			<h3>Attachments: </h3>
+
+			<div class="ui-field-contain">
+
+				<label for="fileLicense">IC/drivers license [jpeg]:</label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileLicense" id="fileLicense" value="" accept="image/jpeg,image/jpg"><img id="new_ic_image_status"/>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="fileEducationRecord">Education record [jpeg]:</label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileEducationRecord" id="fileEducationRecord" value="" accept="image/jpeg,image/jpg"><img id="new_er_image_status"/>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="fileArrestRecord">Arrest record [jpeg]:</label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileArrestRecord" id="fileArrestRecord" value="" accept="image/jpeg,image/jpg"><img id="new_ar_image_status"/>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="fileCarPhoto">Car photo [jpeg]:</label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileCarPhoto" id="fileCarPhoto" value="" accept="image/jpeg,image/jpg"><img id="new_cp_image_status"/>
+			</div>
+			<div align="center">
+				<img id="processing_new"/>
+			</div>
+			<div class="ui-field-contain">
+				<input type="button" data-theme="b" name="btnSave" id="btnSave" value="Save Application" onclick="sendAppData();">
+			</div>
+			<div id=loginStatusLine style="font-size:14px; font-weight:bold; color:#ff6600;"></div>
+			<div style="background: #FFFFFF; ">
+				<textarea id="txaConsoleLog" style="font: 11px sans-serif; background:#dbecfa; height:60px;"  rows="30" readonly="readonly"></textarea>
+			</div>
+	</form>
+	</div><!-- /content -->
+
+	<div data-role="footer" style="overflow:hidden;" data-theme="b">
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#newapp" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="flip">New Application</a></li>
+				<li><a href="#search" data-icon="search" data-transition="flip">Search/Edit</a></li>
+				<li><a href="#contact" data-icon="phone">Contact Us</a></li>
+				<li><a href="#newapp" data-icon="home">Home</a></li>
+				<li><a href="#about" data-icon="about_icon.png" data-transition="slide">About</a></li>
+			</ul>
+
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page new -->
+
+<div data-role="page" id="about" data-theme="a">
+	<div data-role="header">
+		<img src="./img/redleaf.png">
+
+		<span style="text-align:center;">Red Leaf Insurance Mobile Agent Demo</span>
+	</div><!-- /header -->
+	<div align="center">
+		<img src="./img/about.jpg">
+	</div>
+	<div data-role="footer" style="overflow:hidden;" data-theme="b">
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#newapp" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="flip">New Application</a></li>
+				<li><a href="#search" data-icon="search" data-transition="flip">Search/Edit</a></li>
+				<li><a href="#contact" data-icon="phone">Contact Us</a></li>
+				<li><a href="#newapp" data-icon="home">Home</a></li>
+				<li><a href="#about" data-icon="about_icon.png" data-transition="slide">About</a></li>
+			</ul>
+
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+</div>
+
+<div align="center" data-role="page" data-dialog="true" id="save_result">
+
+	<div data-role="header"  class="ui-corner-top">
+		<h1>Transaction Status</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+				<h3 class="ui-title"><label id="uw_status"/></h3>
+				<a href="#" data-role="button" data-inline="true" data-rel="back" data-transition="flip" data-theme="b">OK</a>
+	</div><!-- /content -->
+
+</div>
+
+<div align="center" data-role="page" data-dialog="true" id="login_status">
+
+	<div data-role="header"  class="ui-corner-top">
+		<h1>Login Status</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+				<h3 class="ui-title"><label id="log_status"/></h3>
+				<a id="ok_link" href="#newapp" data-role="button" data-inline="true" data-transition="flip" data-theme="b">OK</a>
+	</div><!-- /content -->
+
+</div>
+
+
+<div data-role="page" id="search" data-theme="a">
+
+	<div data-role="header">
+		<img src="./img/redleaf.png"  style="background:#fff; color:#000000">
+
+		<span style="text-align:center;">Red Leaf Insurance Mobile Agent Demo</span>
+	</div><!-- /header -->
+
+	<div role="content" class="ui-content" data-theme="a">
+		<h2>Search/Edit</h2>
+
+		<p>Type in user name in the search box below to search applications.</p>
+
+		<div class="ui-field-contain">
+			<label for="txtSearchName">First Name Like:</label>
+			<input type="text" name="txtSearchName" id="txtSearchName" placeholder="Name" value="" data-mini="true">
+		</div>
+	</div>
+	<div class="ui-field-contain">
+		<input type="button" data-theme="b" name="btnSave" id="btnSave" value="Search Application(s)" onclick="searchAppData();">
+	</div>
+	<div data-role="main" class="ui-content">
+		<h2>Search Results <label id="search_status"/></h2>
+		<ul data-role="listview" id="addons-list">
+		</ul>
+	</div>
+
+	<div id=loginStatusLine style="font-size:14px; font-weight:bold; color:#ff6600;"></div>
+	<div style="background: #FFFFFF; ">
+		<textarea id="txaConsoleLog" style="font: 11px sans-serif; background:#dbecfa; height:60px;"  rows="30" readonly="readonly"></textarea>
+	</div>
+	<div data-role="footer" style="overflow:hidden;" data-theme="b">
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#newapp" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="flip">New Application</a></li>
+				<li><a href="#search" data-icon="search" data-transition="slide">Search/Edit</a></li>
+				<li><a href="#contact" data-icon="phone" data-transition="slide">Contact Us</a></li>
+				<li><a href="#contact" data-icon="home" data-transition="flip">Home</a></li>
+				<li><a href="#about" data-icon="about_icon.png" data-transition="slide">About</a></li>
+			</ul>
+
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /search/edit page -->
+
+<!-- Start of first page: #one -->
+<div data-role="page" id="edit" data-theme="a">
+
+	<div data-role="header">
+		<img src="./img/redleaf.png"  style="background:#fff; color:#000000">
+
+		<span style="text-align:center;">Red Leaf Insurance Mobile Agent Demo</span>
+	</div><!-- /header -->
+
+	<div role="content" class="ui-content" data-theme="a">
+		<h2>Edit Application <label id="edit_status"/></h2>
+
+
+		<p>Please update the details below.</p>
+
+		<form class="cmxform" id="UpdAppForm" method="get" action="">
+
+			<div class="ui-field-contain">
+				<label for="txtUpdAppID">Application ID:</label>
+				<input type="text" name="txtUpdAppID" id="txtUpdAppID" placeholder="Application ID" value="" data-mini="true">
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="txtUpdFamilyName">Family Name:</label>
+				<input type="text" name="txtUpdFamilyName" id="txtUpdFamilyName" placeholder="Family Name" value="" data-mini="true">
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="txtUpdGivenName">Given Names:</label>
+				<input type="text" name="txtUpdGivenName" id="txtUpdGivenName" data-theme="a" placeholder="Given Name" value="" data-mini="true">
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="selUpdTitle" class="select">Title</label>
+				<select name="selUpdTitle" id="selUpdTitle" data-mini="true" data-inline="true" data-theme="a">
+					<option value="Head of State">Head of State</option>
+					<option value="Executive">Executive</option>
+					<option value="House husband">House husband</option>
+					<option value="Home executive">Home executive</option>
+					<option value="Office worker">Office worker</option>
+					<option value="Entrepreneur">Entrepreneur</option>
+					<option value="Explosives Technician">Explosives Technician</option>
+				</select>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="txtUpdYOB">Year Of Birth:</label>
+				<input type="text" maxlength="4" minlength="4" name="txtUpdYOB" id="txtUpdYOB" data-theme="a" placeholder="UpdYOB" value="" data-mini="true">
+			</div>
+
+			<div class="ui-field-contain">
+
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Gender:</legend>
+						<input type="radio" name="rdUpdGender" id="rdUpdFemale" value="F">
+						<label for="rdUpdFemale">Female</label>
+						<input type="radio" name="rdUpdGender" id="rdUpdMale" value="M">
+						<label for="rdUpdMale">Male</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="selUpdIndustry" class="select">Industry</label>
+				<select name="selUpdIndustry" id="selUpdIndustry" data-mini="true" data-inline="true">
+					<option value="Agriculture">Agriculture</option>
+					<option value="Accounting">Accounting</option>
+					<option value="Advertising">Advertising</option>
+					<option value="Automotive">Automotive</option>
+					<option value="Banking">Banking</option>
+					<option value="Call Centres">Call Centres</option>
+					<option value="Chemical">Chemical</option>
+					<option value="Consulting">Consulting</option>
+					<option value="Defence">Defence</option>
+					<option value="Education">Education</option>
+					<option value="Energy">Energy</option>
+					<option value="Entertainment & Leisure">Entertainment & Leisure</option>
+					<option value="Financial Services">Financial Services</option>
+					<option value="Government">Government</option>
+					<option value="Health Care">Health Care</option>
+					<option value="Legal">Legal</option>
+					<option value="Manufacturing">Manufacturing</option>
+					<option value="Pharmaceuticals">Pharmaceuticals</option>
+					<option value="Real Estate">Real Estate</option>
+					<option value="Retail & Wholesale">Retail & Wholesale</option>
+					<option value="Service">Service</option>
+					<option value="Sports">Sports</option>
+					<option value="Technology">Technology</option>
+					<option value="Telecommunications">Telecommunications</option>
+					<option value="Transportation">Transportation</option>
+				</select>
+			</div>
+
+
+			<div class="ui-field-contain">
+				<label for="selUpdSalary" class="select">Annual Salary Range USD</label>
+				<select name="selUpdSalary" id="selUpdSalary" data-mini="true" data-inline="true">
+					<option value=">20K">>20K</option>
+					<option value="20-40K">20-40K</option>
+					<option value="40-80K">40-80K</option>
+					<option value="80-120K">80-120K</option>
+					<option value="120-220K">120-220K</option>
+					<option value=">220K">>220K</option>
+				</select>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Smoker:</legend>
+						<input type="radio" name="rdUpdSmoker" id="rdUpdSmokerYes" value="Y">
+						<label for="rdUpdSmokerYes">Yes</label>
+						<input type="radio" name="rdUpdSmoker" id="rdUpdSmokerNo" value="N">
+						<label for="rdUpdSmokerNo">No</label>
+				</fieldset>
+
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Drinker:</legend>
+						<input type="radio" name="rdUpdDrinker" id="rdUpdDrinkerYes" value="Y">
+						<label for="rdUpdDrinkerYes">Yes</label>
+						<input type="radio" name="rdUpdDrinker" id="rdUpdDrinkerNo" value="N">
+						<label for="rdUpdDrinkerNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Race Car Driver:</legend>
+						<input type="radio" name="rdUpdRCDriver" id="rdUpdRCDriverYes" value="Y">
+						<label for="rdUpdRCDriverYes">Yes</label>
+						<input type="radio" name="rdUpdRCDriver" id="rdUpdRCDriverNo" value="N">
+						<label for="rdUpdRCDriverNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Volvo Driver:</legend>
+						<input type="radio" name="rdUpdVolvoDriver" id="rdUpdVolvoDriverYes" value="Y">
+						<label for="rdUpdVolvoDriverYes">Yes</label>
+						<input type="radio" name="rdUpdVolvoDriver" id="rdUpdVolvoDriverNo" value="N">
+						<label for="rdUpdVolvoDriverNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Chess Club Member:</legend>
+						<input type="radio" name="rdUpdChessClubMember" id="rdUpdChessClubMemberYes" value="Y">
+						<label for="rdUpdChessClubMemberYes">Yes</label>
+						<input type="radio" name="rdUpdChessClubMember" id="rdUpdChessClubMemberNo" value="N">
+						<label for="rdUpdChessClubMemberNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<legend>Been Arrested?:</legend>
+						<input type="radio" name="rdUpdBeenArrested" id="rdUpdBeenArrestedYes" value="Y">
+						<label for="rdUpdBeenArrestedYes">Yes</label>
+						<input type="radio" name="rdUpdBeenArrested" id="rdUpdBeenArrestedNo" value="N">
+						<label for="rdUpdBeenArrestedNo">No</label>
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="fileUpdLicense">Update IC/drivers license [jpeg]:<span id="fileUpdLicenseEI"/></label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileUpdLicense" id="fileUpdLicense" value="" accept="image/jpeg,image/jpg"><img id="upd_ic_image_status"/>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="fileUpdEducationRecord">Update Education record [jpeg]:<span id="fileUpdEducationRecordEI"/></label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileUpdEducationRecord" id="fileUpdEducationRecord" value="" accept="image/jpeg,image/jpg"><img id="upd_er_image_status"/>
+
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="fileUpdArrestRecord">Update Arrest Record [jpeg]:<span id="fileUpdArrestRecordEI"/></label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileUpdArrestRecord" id="fileUpdArrestRecord" value="" accept="image/jpeg,image/jpg"><img id="upd_ar_image_status"/>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="fileUpdCarPhoto">Car Proof Photo [jpeg]:<span id="fileUpdCarPhotoEI"/></label>
+				<form><input type="button" data-icon="camera" data-iconpos="notext" value="Icon only"></form>
+				<input type="file" name="fileUpdCarPhoto" id="fileUpdCarPhoto" value="" accept="image/jpeg,image/jpg" ><img id="upd_cp_image_status"/>
+			</div>
+			<div align="center">
+				<img id="processing_upd"/>
+			</div>
+
+			<div class="ui-field-contain">
+				<input type="button" data-theme="b" name="btnEdit" id="btnEdit" value="Update Application" onclick="sendUpdateData();">
+			</div>
+			<div id=loginStatusLine style="font-size:14px; font-weight:bold; color:#ff6600;"></div>
+			<div style="background: #FFFFFF; ">
+				<textarea id="txaConsoleLog" style="font: 11px sans-serif; background:#dbecfa; height:60px;"  rows="30" readonly="readonly"></textarea>
+			</div>
+		</form>
+	</div><!-- /content -->
+
+	<div data-role="footer" style="overflow:hidden;" data-theme="b">
+		<div data-role="navbar" data-iconpos="top">
+			<ul>
+				<li><a href="#newapp" data-icon="grid" class="ui-btn-active ui-state-persist" data-transition="flip">New Application</a></li>
+				<li><a href="#search" data-icon="search" data-transition="flip">Search/Edit</a></li>
+				<li><a href="#contact" data-icon="phone">Contact Us</a></li>
+				<li><a href="#newapp" data-icon="home">Home</a></li>
+				<li><a href="#about" data-icon="about_icon.png" data-transition="slide">About</a></li>
+			</ul>
+
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+
+</div><!-- /page new -->
+
+
+</body>
+</html>
