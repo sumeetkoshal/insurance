@@ -71,7 +71,7 @@
 1. <a href="http://dev.solacesystems.com/downloads/" target="_blank">Download VMR (Virtual Message Router), SolAdmin & its Release Notes</a>
 2. Install/run VMR and SolAdmin as per the instructions in the release notes.
 3. Create VPN (Partition) in Solace VMR
-   <a href="./SolaceConfig.zip" target="_blank">Download CLI Script for VPN creation</a>
+   <a href="./SolaceConfig/insurance.cli" target="_blank">Download CLI Script for VPN creation</a>
    - import this script in VMR as described below.
    - Run SolAdmin
    - Add newly deployed running VMR in Solace as managed apliance
