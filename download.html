@@ -1,0 +1,111 @@
+<!DOCTYPE html><html>
+<head><meta charset="utf-8">
+<title>Insurance Agent Mobile App Demo</title>
+<link rel="stylesheet" href="css/insurancedemo.css" type="text/css" media="all" />
+</head>
+
+<body>
+<div style="width:900px;">
+<h1>Insurance Agent Mobile App Demo</h1>
+
+<div style="background:#005dab; height:30px; padding-top:10px; padding-left:15px;">
+<p style="font-size:18px; margin-top:0;">
+<a href="index.html" style="color:#fff;">Overview</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="demo.html" style="color:#fff;">Experience Online</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="walkthrough.html" style="color:#fff;">Walkthrough</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="details.html" style="color:#fff;">Details</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<a href="download.html" style="color:#fff;">Download</a>
+</p>
+</div>
+
+<h1><a id="Download_Install__Run_this_demo_on_my_machine_69"></a>Download, Install &amp; Run this demo on my machine</h1>
+<ol>
+<li>
+<p><a href="http://dev.solacesystems.com/downloads/" target="_blank">Download VMR (Virtual Message Router), SolAdmin &amp; its Release Notes</a></p>
+</li>
+<li>
+<p>Install/run VMR and SolAdmin as per the instructions in the release notes.</p>
+</li>
+<li>
+<p>Create VPN (Partition) in Solace VMR
+<a href="https://github.com/sumeetkoshal/insurance/blob/master/SolaceConfig/insurance.cli" target="_blank">Download CLI Script for VPN creation</a></p>
+<ul>
+<li>import this script in VMR as described below.</li>
+<li>Run SolAdmin</li>
+<li>Add newly deployed running VMR in Solace as managed apliance<br>
+<img style="max-width:800px;" src="./images/SolAdmin-AddVMR.png" alt="Add VMR"></li>
+<li>Launch CLI<br>
+<img style="max-width:800px;" src="./images/VMR-Launch-CLI.png" alt="Add VMR"></li>
+<li>Login in CLI<br>
+<img style="max-width:800px;" src="./images/VMR-CLI-Login.png" alt="Login CLI"></li>
+<li>Create File Transfer User<br>
+<img style="max-width:800px;" src="./images/VMR-Create-FileTransfer-User.png" alt="Create File Transfer User"></li>
+<li>Launch File transfer<br>
+<img style="max-width:800px;" src="./images/VMR-Launch-FileTransfer.png" alt="Launch File Transfer"></li>
+<li>File Transfer Login<br>
+<img style="max-width:800px;" src="./images/VMR-FileTransfer-Login.png" alt="File Transfer Login"></li>
+<li>Upload CLI Script in VMR<br>
+<img style="max-width:800px;" src="./images/VMR-Upload-CLI-Script.png" alt="Upload CLI Script"></li>
+<li>Execute CLI Script<br>
+<img style="max-width:800px;" src="./images/VMR-Execute-CLI-Script.png" alt="Execute CLI Script"></li>
+<li>Confirm the VPN has been created successfully<br>
+<img style="max-width:800px;" src="./images/VMR-Confirm-VPN-Creation.png" alt="Confirm VPN Creation"></li>
+</ul>
+</li>
+<li>
+<p><a href="http://dev.mysql.com/downloads/mysql/" target="_blank">Download, install and run MySQL server</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sumeetkoshal/insurance/blob/master/DBScript/script.sql" target="_blank">Download and deploy the DB script</a></p>
+
+<p>Make sure you update the DB config under
+source/main/resources/META-INF/spring/routes_config.xml file as needed
+
+<pre>
+  &lt;bean id=“dataSource” class=“org.apache.commons.dbcp.BasicDataSource” destroy-method=“close”&gt;
+    &lt;property name="driverClassName" value="com.mysql.jdbc.Driver"/&gt;
+    &lt;property name="url" value="jdbc:mysql://localhost:3306/insurance"/&gt;
+    &lt;property name="username" value="fuse_app"/&gt;
+    &lt;property name="password" value="solace1"/&gt;
+  &lt;/bean&gt;
+</pre>
+</p>
+
+</li>
+<li>
+<p><a href="http://www.jboss.org/products/fuse/download/" target="_blank">Download Fuse</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sumeetkoshal/insurance/blob/master/FuseApp/redleaf-insaurance-services-0.0.1-SNAPSHOT.jar" target="_blank">Deploy Fuse App under Fuse deploy folder</a></p>
+
+<p>Make sure you change the Solace VMR IP to point to your VMR IP under<br>
+source/main/resources/META-INF/spring/routes_config.xml file.
+
+<pre>
+  &lt;property name=“environment”&gt;
+    &lt;map&gt;
+      &lt;entry key=“java.naming.provider.url” value=“smf://52.76.29.143” /&gt;
+      &lt;entry key=“java.naming.factory.initial” value=“com.solacesystems.jndi.SolJNDIInitialContextFactory” /&gt;
+      &lt;entry key=“java.naming.security.credentials” value=“password” /&gt;
+      &lt;entry key=“java.naming.security.principal” value=“ins_user” /&gt;
+      &lt;entry key=“Solace_JMS_VPN” value=“insurance” /&gt;
+    &lt;/map&gt;
+  &lt;/property&gt;
+</pre>
+</p>
+</li>
+<li>
+<p>Start Fuse</p>
+</li>
+<li>
+<p><a href="./www">Download web application</a>.</p>
+</li>
+</ol>
+
+<p>Make the changes as suugested in the images below in rest.js file under insurance/res/sol/</p>
+<img style="max-width:800px;" src="./images/UpdateREST-js.png" alt="Make the necessary changes">
+
+
+</div>
+</body>
+</html>
