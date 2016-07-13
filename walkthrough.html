@@ -1,0 +1,56 @@
+<!DOCTYPE html><html>
+<head><meta charset="utf-8">
+<title>Insurance Agent Mobile App Demo</title>
+<link rel="stylesheet" href="css/insurancedemo.css" type="text/css" media="all" />
+</head>
+
+<body>
+<div style="width:900px;">
+<h1>Insurance Agent Mobile App Demo</h1>
+
+<div style="background:#005dab; height:30px; padding-top:10px; padding-left:15px;">
+<p style="font-size:18px; margin-top:0;">
+  <a href="index.html" style="color:#fff;">Overview</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="demo.html" style="color:#fff;">Online Demo</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="walkthrough.html" style="color:#fff;">Walkthrough</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="details.html" style="color:#fff;">Details</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="download.html" style="color:#fff;">Run Locally</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://github.com/sumeetkoshal/insurance" style="color:#fff;" target="_blank">View on GitHub</a>
+</p>
+</div>
+
+
+<h1><a id="Demo_Walkthrough_43"></a>Walkthrough</h1>
+<p>The default username is “sumeet” and password is “sumeet”. Clicking on “Log Me In To My Account” will take you to “New Applications” page. In the background when you click on Login button, it send a message to Solace appliance which is processed and authenticated by the LoginHandler service.</p>
+
+<h2>New application</h2>
+
+<p>The below screen takes you to the default landing page that you see after you are successfully authenticated by LoginService handler.<br>
+<img style="max-width:800px;" src="./images/new_app_screen.png" alt="New Application"></p>
+
+
+<p>After you fill in the necessary details and choose required images to upload, click on the “Save Application” button. In the background this action will send several messages such as Application Data and Images data. These messages are received the application running within Fuse. The application validates, process and saves Application Data in the DB and images data on the disk (image files names are saved in the DB). It then sends the response back to the UI.</p>
+
+<h2>Search existing applications</h2>
+
+<p>The below screen shows the search applications page.</p>
+<img style="max-width:800px;" src="./images/search_apps.png" alt="Search Existing Applications">
+
+
+<p>You have an option to search applications based on the first name of the applicants. You can leave this space blank and hit the search button to search all existing applications.</p>
+
+
+<p>The search response is listed below. You may click the individual record in the list to view/update.</p>
+
+<h2>Update application</h2>
+
+<p>The below screen shows the edit/update application page.</p>
+<img style="max-width:800px;" src="./images/update_app_screen.png" alt="Limitations of REST">
+
+
+<p>You may change any details as needed (including images) and hit “Update Application button”. The backend application validates, process and saves the updated Application Data in the DB and images data on the disk (image files names are saved in the DB). It then sends the response back to the UI.</p>
+
+
+</div>
+</body>
+</html>
