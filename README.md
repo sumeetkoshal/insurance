@@ -1,5 +1,5 @@
 # Insurance Demo
-<a href="https://sftp.solacesystems.com/Portal_Docs/#page/REST_Messaging_Protocol_Guide/About_This_Document.html" target="_blank">Using Solace REST Capabilities</a>
+<a href="http://dev.solacesystems.com/tech/rest/" target="_blank">Using Solace REST Capabilities</a>
 
 ## Demo Introduction
 > The purpose of this demo is to demonstrate how modern responsive insurance agent applications can be build to communicate directly to high performance Solace messaging system. Thus avoiding legacy way of communicating via web servers in the middle, which becomes a bottleneck by communicating synchronously to slow backend processing systems.
@@ -70,6 +70,7 @@
 ## Download, Install & Run this demo on my machine
 1. <a href="http://dev.solacesystems.com/downloads/" target="_blank">Download VMR (Virtual Message Router), SolAdmin & its Release Notes</a>
 2. Install/run VMR and SolAdmin as per the instructions in the release notes.
+   <a href="http://dev.solacesystems.com/get-started/vmr-setup-tutorials/setting-up-solace-vmr/" target="_blank">Install/run VMR</a>
 3. Create VPN (Partition) in Solace VMR
    <a href="./SolaceConfig/insurance.cli" target="_blank">Download CLI Script for VPN creation</a>
    - import this script in VMR as described below.
