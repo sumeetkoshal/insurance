@@ -1,66 +1,30 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on https://github.com/jonrohan -->
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
-  <link rel="stylesheet" href="stylesheets/github-dark.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
-
-  <title>Insurance</title>
-  <meta name="description" content="The purpose of this demo is to demonstrate how modern responsive insurance agent applications can be build to communicate directly to high performance Solace messaging system.">
-
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
+<!DOCTYPE html><html>
+<head><meta charset="utf-8">
+<title>Insurance Agent Mobile App Demo</title>
+<link rel="stylesheet" href="css/insurancedemo.css" type="text/css" media="all" />
 </head>
 
 <body>
+<div style="width:900px;">
+<h1>Insurance Agent Mobile App Demo</h1>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title">Insurance</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">The purpose of this demo is to demonstrate how modern responsive insurance agent applications can be build to communicate directly to high performance Solace messaging system.</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/sumeetkoshal/insurance/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/sumeetkoshal/insurance/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/sumeetkoshal/insurance" class="code">View Insurance on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <h1>
-<a id="insurance-demo" class="anchor" href="#insurance-demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Insurance Demo</h1>
+<div style="background:#005dab; height:30px; padding-top:10px; padding-left:15px;">
+<p style="font-size:18px; margin-top:0;">
+  <a href="index.html" style="color:#fff;">Overview</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="demo.html" style="color:#fff;">Online Demo</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="walkthrough.html" style="color:#fff;">Walkthrough</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="details.html" style="color:#fff;">Details</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="download.html" style="color:#fff;">Run Locally</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="https://github.com/sumeetkoshal/insurance" style="color:#fff;" target="_blank">View on GitHub</a>
+</p>
+</div>
 
-<p><a href="http://dev.solacesystems.com/tech/rest/">Using Solace REST Capabilities</a></p>
-
-<h2>
-<a id="demo-introduction" class="anchor" href="#demo-introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo Introduction</h2>
-
-<blockquote>
 <p>The purpose of this demo is to demonstrate how modern responsive insurance agent applications can be build to communicate directly to high performance Solace messaging system. Thus avoiding legacy way of communicating via web servers in the middle, which becomes a bottleneck by communicating synchronously to slow backend processing systems.</p>
 
-<p>By having Solace in the middle of a mobile apps and slow backend systems, Solace decouples and stabilizes backend systems (especially under huge volume) and trickle feed at the rate downstream systems can process and respond. Since there is no webserver in the middle for request and response, with minimal payload the responses are very fast. Solace has the capability to terminate 200,000 streaming web client connection.</p>
+<img style="max-width:500px; float:right; margin:0 0 10px 20px;" src="./images/about.jpg" alt="About"><p>By having Solace in the middle of a mobile apps and slow backend systems, Solace decouples and stabilizes backend systems (especially under huge volume) and trickle feed at the rate downstream systems can process and respond. Since there is no webserver in the middle for request and response, with minimal payload the responses are very fast. Solace has the capability to terminate 200,000 streaming web client connection.</p>
+<p>This demo shows how insurance agents can use iPad/Mobile applications on the fields for Customer Account Opening, Claims Filing and crosssell &amp; upsell. Solace also underpins the ESB (Camel based) and feeds the Hadoop big data storage (not a part of the demo).The purpose of this demo is also to highlight challenges/limitations of typical/legacy REST based applications and to demonstrate Solace capability to allow browser/phone based applications to connect directly to Solace messaging routers and do <a href="https://sftp.solacesystems.com/Portal_Docs/#page/REST_Messaging_Protocol_Guide/About_This_Document.html">streaming REST based request/reply messaging.</a></p>
 
-<p>This demo typically shows how insurance agents can use iPad/Mobile applications on the fields for Customer Account Opening, Claims Filing and crosssell &amp; upsell. Solace also underpins the ESB (Camel based) and feeds the Hadoop big data storage (not a part of the demo).The purpose of this demo is also to highlight challenges/limitations of typical/legacy REST based applications and to demonstrate Solace capability to allow browser/phone based applications to connect directly to Solace messaging routers and do streaming REST based request/reply messaging.</p>
-
-<p><img src="https://github.com/sumeetkoshal/insurance/blob/master/images/about.jpg" alt="About"></p>
-</blockquote>
-
-<h2>
-<a id="demo-technical-details" class="anchor" href="#demo-technical-details" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo Technical Details</h2>
-
-<h3>
-<a id="solace-features-being-used" class="anchor" href="#solace-features-being-used" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solace features being used:</h3>
-
-<blockquote>
+<h3><a id="Solace_features_being_used_16"></a>Solace capabilities highlighted:</h3>
 <ul>
 <li>Native REST support</li>
 <li>Shock absorber</li>
@@ -68,199 +32,10 @@
 <li>Fan Out</li>
 <li>High Throughput</li>
 </ul>
-</blockquote>
-
-<h3>
-<a id="challengeslimitations-with-typical-rest" class="anchor" href="#challengeslimitations-with-typical-rest" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Challenges/Limitations with Typical REST</h3>
-
-<blockquote>
-<p><img src="https://github.com/sumeetkoshal/insurance/blob/master/images/typical_rest.png" alt="Typical REST"></p>
-
-<p><img src="https://github.com/sumeetkoshal/insurance/blob/master/images/limitations_rest.png" alt="Limitations of REST"></p>
-</blockquote>
-
-<h3>
-<a id="solace--rest-assuredbenefits" class="anchor" href="#solace--rest-assuredbenefits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solace + REST Assured/Benefits</h3>
-
-<blockquote>
-<p><img src="https://github.com/sumeetkoshal/insurance/blob/master/images/solace+rest.png" alt="Solace + REST"></p>
-</blockquote>
-
-<h3>
-<a id="technologiesinfrastructure-used" class="anchor" href="#technologiesinfrastructure-used" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Technologies/Infrastructure Used</h3>
-
-<blockquote>
-<ul>
-<li>Solace VMR running on AWS</li>
-<li>NGinx running on AWS for reverse proxy balancer and to handle the CORS issue.</li>
-<li>MySQL DB running on AWS</li>
-<li>HTML5</li>
-<li>REST</li>
-<li>Java based app running in Fuse (ESB) on AWS</li>
-</ul>
-</blockquote>
-
-<h2>
-<a id="live-demo" class="anchor" href="#live-demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Live Demo</h2>
-
-<p><a href="http://52.74.193.178/insurance">Take me to the demo now</a></p>
-
-<h2>
-<a id="demo-walkthrough" class="anchor" href="#demo-walkthrough" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo Walkthrough</h2>
-
-<blockquote>
-<ul>
-<li>Open index.html in browser of your choice &amp; Login.<br>
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/login.png" alt="Limitations of REST">
-</li>
-</ul>
-
-<p>The default username is "sumeet" and password is "sumeet". Clicking on "Log Me In To My Account" will take you to "New Applications" page. In the background when you click on Login button, it send a message to Solace appliance which is processed and authenticated by the LoginHandler service.</p>
-</blockquote>
-
-<ul>
-<li>New application<br>
-&gt;The below screen takes you to the default landing page that you see after you are successfully authenticated by LoginService handler.
-&gt;<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/new_app_screen.png" alt="New Application">
-</li>
-</ul>
-
-<blockquote>
-<p>After you fill in the necessary details and choose required images to upload, click on the "Save Application" button. In the background this action will send several messages such as Application Data and Images data. These messages are received the application running within Fuse. The application validates, process and saves Application Data in the DB and images data on the disk (image files names are saved in the DB). It then sends the response back to the UI.</p>
-</blockquote>
-
-<ul>
-<li>Search existing applications<br>
-&gt;The below screen shows the search applications page.
-&gt;<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/search_apps.png" alt="Search Existing Applications">
-</li>
-</ul>
-
-<blockquote>
-<p>You have an option to search applications based on the first name of the applicants. You can leave this space blank and hit the search button to search all existing applications.</p>
-
-<p>The search response is listed below. You may click the individual record in the list to view/update.</p>
-</blockquote>
-
-<ul>
-<li>Update application<br>
-&gt;The below screen shows the edit/update application page.
-&gt; <img src="https://github.com/sumeetkoshal/insurance/blob/master/images/update_app_screen.png" alt="Limitations of REST">
-</li>
-</ul>
-
-<blockquote>
-<p>You may change any details as needed (including images) and hit "Update Application button". The backend application validates, process and saves the updated Application Data in the DB and images data on the disk (image files names are saved in the DB). It then sends the response back to the UI.</p>
-</blockquote>
-
-<h2>
-<a id="download-install--run-this-demo-on-my-machine" class="anchor" href="#download-install--run-this-demo-on-my-machine" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download, Install &amp; Run this demo on my machine</h2>
-
-<ol>
-<li><a href="http://dev.solacesystems.com/downloads/">Download VMR (Virtual Message Router), SolAdmin &amp; its Release Notes</a></li>
-<li>Install/run VMR and SolAdmin as per the instructions in the release notes.
-<a href="http://dev.solacesystems.com/get-started/vmr-setup-tutorials/setting-up-solace-vmr/">Install/run VMR</a>
-</li>
-<li>
-<p>Create VPN (Partition) in Solace VMR
-<a href="./SolaceConfig/insurance.cli">Download CLI Script for VPN creation</a></p>
-
-<ul>
-<li>import this script in VMR as described below.</li>
-<li>Run SolAdmin</li>
-<li>Add newly deployed running VMR in Solace as managed apliance
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/SolAdmin-AddVMR.png" alt="Add VMR">
-</li>
-<li>Launch CLI
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-Launch-CLI.png" alt="Add VMR">
-</li>
-<li>Login in CLI
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-CLI-Login.png" alt="Login CLI">
-</li>
-<li>Create File Transfer User
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-Create-FileTransfer-User.png" alt="Create File Transfer User">
-</li>
-<li>Launch File transfer
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-Launch-FileTransfer.png" alt="Launch File Transfer">
-</li>
-<li>File Transfer Login
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-FileTransfer-Login.png" alt="File Transfer Login">
-</li>
-<li>Upload CLI Script in VMR
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-Upload-CLI-Script.png" alt="Upload CLI Script">
-</li>
-<li>Execute CLI Script
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-Execute-CLI-Script.png" alt="Execute CLI Script">
-</li>
-<li>Confirm the VPN has been created successfully
-<img src="https://github.com/sumeetkoshal/insurance/blob/master/images/VMR-Confirm-VPN-Creation.png" alt="Confirm VPN Creation">
-</li>
-</ul>
-</li>
-<li><p><a href="http://dev.mysql.com/downloads/mysql/">Download, install and run MySQL server</a></p></li>
-<li>
-<p><a href="./DB%20Script.zip">Download and deploy the DB script</a></p>
-
-<blockquote>
-<p>Make sure you update the DB config under 
- source/main/resources/META-INF/spring/routes_config.xml file as needed</p>
-</blockquote>
-
-<pre><code> &lt;property name="driverClassName" value="com.mysql.jdbc.Driver"/&gt;
- &lt;property name="url" value="jdbc:mysql://localhost:3306/insurance"/&gt;
- &lt;property name="username" value="fuse_app"/&gt;
- &lt;property name="password" value="solace1"/&gt;
-</code></pre>
-
-<p></p>
-</li>
-<li><a href="http://www.jboss.org/products/fuse/download/">Download Fuse</a></li>
-<li>
-<p><a href="./FuseAPP/redleaf-insaurance-services-0.0.1-SNAPSHOT.jar">Deploy Fuse App under Fuse deploy folder</a></p>
-
-<blockquote>
-<p>Make sure you change the Solace VMR IP to point to your VMR IP under<br>
- source/main/resources/META-INF/spring/routes_config.xml file.</p>
-</blockquote>
-
-<pre><code> &lt;map&gt;
-     &lt;entry key="java.naming.provider.url" value="smf://52.76.29.143" /&gt;
-     &lt;entry key="java.naming.factory.initial" value="com.solacesystems.jndi.SolJNDIInitialContextFactory" /&gt;
-     &lt;entry key="java.naming.security.credentials" value="password" /&gt;
-     &lt;entry key="java.naming.security.principal" value="ins_user" /&gt;
-     &lt;entry key="Solace_JMS_VPN" value="insurance" /&gt;
- &lt;/map&gt;
-</code></pre>
-
-<p></p>
-</li>
-<li><p>Start Fuse</p></li>
-<li>
-<a href="https://github.com/sumeetkoshal/insurance/blob/master/www">Download web application</a>.
-&gt; Make the changes as suugested in the images below in rest.js file under insurance/res/sol/
- <img src="https://github.com/sumeetkoshal/insurance/blob/master/images/UpdateREST-js.png" alt="Make the necessary changes">
-</li>
-</ol>
-        </article>
-      </div>
-    </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/sumeetkoshal" class="avatar"><img src="https://avatars1.githubusercontent.com/u/59294?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/sumeetkoshal">sumeetkoshal</a> maintains <a href="https://github.com/sumeetkoshal/insurance">Insurance</a></p>
 
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/sumeetkoshal/insurance/tarball/master" class="tar">tar</a><a href="https://github.com/sumeetkoshal/insurance/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
 
-  
+
+</div>
 </body>
 </html>
