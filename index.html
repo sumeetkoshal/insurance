@@ -19,12 +19,11 @@
 </p>
 </div>
 
-<p>The purpose of this demo is to demonstrate how modern responsive insurance agent applications can be build to communicate directly to high performance Solace messaging system. Thus avoiding legacy way of communicating via web servers in the middle, which becomes a bottleneck by communicating synchronously to slow backend processing systems.</p>
+<p>TThis demo shows how insurance agent applications can communicate with back-end systems using Solace messaging technology, instead of with web servers that frequently become a bottleneck. Solace decouples and stabilizes communications between mobile apps and back-end systems by sending information at a rate those back-end systems can handle. Since there is no web server performing request and response in the middle, response times are very fast. Solace has the ability to maintain 200,000 streaming web client connection.</p>
 
-<img style="max-width:500px; float:right; margin:0 0 10px 20px;" src="./images/about.jpg" alt="About"><p>By having Solace in the middle of a mobile apps and slow backend systems, Solace decouples and stabilizes backend systems (especially under huge volume) and trickle feed at the rate downstream systems can process and respond. Since there is no webserver in the middle for request and response, with minimal payload the responses are very fast. Solace has the capability to terminate 200,000 streaming web client connection.</p>
-<p>This demo shows how insurance agents can use iPad/Mobile applications on the fields for Customer Account Opening, Claims Filing and crosssell &amp; upsell. Solace also underpins the ESB (Camel based) and feeds the Hadoop big data storage (not a part of the demo).The purpose of this demo is also to highlight challenges/limitations of typical/legacy REST based applications and to demonstrate Solace capability to allow browser/phone based applications to connect directly to Solace messaging routers and do <a href="https://sftp.solacesystems.com/Portal_Docs/#page/REST_Messaging_Protocol_Guide/About_This_Document.html">streaming REST based request/reply messaging.</a></p>
+<img style="max-width:500px; float:right; margin:0 0 10px 20px;" src="./images/about.jpg" alt="About"><p>This demo also shows how insurance agents can use smartphone/tablet apps to open customer accounts, file claims, and cross-sell/up-sell existing customers. Finally, this demo highlights the limitations of most REST based applications, and shows the advantages of connecting browser/smartphone applications directly to Solace message routers with <a href="https://sftp.solacesystems.com/Portal_Docs/#page/REST_Messaging_Protocol_Guide/About_This_Document.html">streaming REST based request/reply messaging.</a></p>
 
-<h3><a id="Solace_features_being_used_16"></a>Solace capabilities highlighted:</h3>
+<h2><a id="Solace_features_being_used_16"></a>Solace capabilities highlighted:</h2>
 <ul>
 <li>Native REST support</li>
 <li>Shock absorber</li>
@@ -33,9 +32,34 @@
 <li>High Throughput</li>
 </ul>
 
+<h2>How to experience the demo</h2>
 
+<p>There are two main ways to experience this demo. There is a hosted version running in AWS. Or you can download and run it locally in your own environment.</p>
 
+<h3>Try it online</h3>
 
+<p>The demo is hosted online. These links will get you access and provide a walk through which explains what you're seeing.</p>
+
+<ul>
+<li><a href="demo.html">Live Online</a></li>
+<li><a href="walkthrough.html">Demo Walk Through</a></li>
+</ul>
+
+<h3>Run it locally</h3>
+
+<p>You can also run the demo locally on your own so you can really explore the technologies.</p>
+
+<ul>
+<li><a href="download.html">Instructions for running locally</a></li>
+</ul>
+
+<h2>Dive in to the technical details</h2>
+
+<p>And finally if you want to understand exactly what's going on, I've tried to explain the details here:
+
+<ul>
+  <li><a href="details.html">Technical Details</a></li>
+</ul>
 </div>
 </body>
 </html>
