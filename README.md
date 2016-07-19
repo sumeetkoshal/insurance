@@ -7,11 +7,9 @@ If you're new to Solace messaging, you can learn more here:
 * [http://dev.solacesystems.com]()
 
 ## Introduction
-This demo is to demonstrates how modern responsive insurance agent applications can be build to communicate directly to high performance Solace messaging system. Thus avoiding legacy way of communicating via web servers in the middle, which becomes a bottleneck by communicating synchronously to slow backend processing systems.
+This demo shows how insurance agent applications can communicate with back-end systems using Solace messaging technology, instead of with web servers that frequently become a bottleneck. Solace decouples and stabilizes communications between mobile apps and back-end systems by sending information at a rate those back-end systems can handle. Since there is no web server performing request and response in the middle, response times are very fast. Solace has the ability to maintain 200,000 streaming web client connection.
 
-By having Solace in the middle of a mobile apps and slow backend systems, Solace decouples and stabilizes backend systems (especially under huge volume) and trickle feed at the rate downstream systems can process and respond. Since there is no webserver in the middle for request and response, with minimal payload the responses are very fast. Solace has the capability to terminate 200,000 streaming web client connection.
-
-This demo typically shows how insurance agents can use iPad/Mobile applications on the fields for Customer Account Opening, Claims Filing and crosssell & upsell. Solace also underpins the ESB (Camel based) and feeds the Hadoop big data storage (not a part of the demo).The purpose of this demo is also to highlight challenges/limitations of typical/legacy REST based applications and to demonstrate Solace capability to allow browser/phone based applications to connect directly to Solace messaging routers and [do streaming REST based request/reply messaging](https://sftp.solacesystems.com/Portal_Docs/#page/REST_Messaging_Protocol_Guide/About_This_Document.html).
+This demo also shows how insurance agents can use smartphone/tablet apps to open customer accounts, file claims, and cross-sell/up-sell existing customers. Finally, this demo highlights the limitations of most REST based applications, and shows the advantages of connecting browser/smartphone applications directly to Solace message routers with [streaming REST based request/reply messaging.](https://sftp.solacesystems.com/Portal_Docs/#page/REST_Messaging_Protocol_Guide/About_This_Document.html).
 
 
 ## Solace capabilities highlighted:
