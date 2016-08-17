@@ -4,6 +4,8 @@ The goal of this demo is to highlight Solace messaging in a modern responsive in
 
 If you're new to Solace messaging, you can learn more here:
 
+* [http://www.solacesystems.com]()
+* [https://sftp.solacesystems.com/Portal_Docs/]()
 * [http://dev.solacesystems.com]()
 
 ## Introduction
