@@ -4,9 +4,8 @@ The goal of this demo is to highlight Solace messaging in a modern responsive in
 
 If you're new to Solace messaging, you can learn more here:
 
-* [http://www.solacesystems.com]()
-* [https://sftp.solacesystems.com/Portal_Docs/]()
-* [http://dev.solacesystems.com]()
+* [Solace Systems](http://www.solacesystems.com)
+* [Dev Portal](http://dev.solacesystems.com)
 
 ## Introduction
 This demo shows how insurance agent applications can communicate with back-end systems using Solace messaging technology, instead of with web servers that frequently become a bottleneck. Solace decouples and stabilizes communications between mobile apps and back-end systems by sending information at a rate those back-end systems can handle. Since there is no web server performing request and response in the middle, response times are very fast. Solace has the ability to maintain 200,000 streaming web client connection.
